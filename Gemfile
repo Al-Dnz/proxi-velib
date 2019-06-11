@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 File.read('./.ruby-version')
 
+gem 'bundler', '>= 1.8.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -38,7 +39,13 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker'
-gem 'milligram', '~> 1.1'
+# gem 'milligram'
+gem 'jquery-rails'
+gem 'leaflet-js'
+gem 'leaflet-rails'
+# source 'https://rails-assets.org' do
+#   gem 'rails-assets-leaflet'
+# end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,17 +55,15 @@ group :development, :test do
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'annotate'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'table_print'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
