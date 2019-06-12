@@ -1,3 +1,31 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+#main-title {font-family: 'Oswald', sans-serif;
+              font-size: 60px;
+              font-style: bold;
+              color:rgb(106, 17, 94);
+            margin-left: 20px}
+
+.table-title, label.field-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  color:rgb(106, 17, 94)}
+
+  .map{ border: 3px solid rgb(106, 17, 94);
+  border-radius: 20px;}
+
+
+  .button-large {
+  font-size: 1.4rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding: 0 2rem;
+}
+
+
+#main-map {width:500px;
+          height:500px;}

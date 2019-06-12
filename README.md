@@ -1,7 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Velib datas are nicely given by http://api.citybik.es/v2/
+Thanks to them !
 
 Things you may want to cover:
 
