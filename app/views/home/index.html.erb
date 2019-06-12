@@ -33,9 +33,9 @@
         </tbody>
     </table>
   </div>
-  
-  <div class="column map">
-    <div id= "main-map" ></div>
+
+  <div class="column">
+    <div  class="map "id= "main-map" ></div>
   </div>
 
 </div>
@@ -58,11 +58,5 @@
 
 </form>
 </div>
-
-
-<script>
-  var map = L.map('main-map').setView([51.505, -0.09], 13);
-   L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',{maxZoom :100}).addTo(map);
-</script>
 
 <%= javascript_include_tag 'main_map' %>

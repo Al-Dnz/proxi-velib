@@ -2,8 +2,7 @@
   "name": "proxi-velib",
   "private": true,
   "dependencies": {
-    "feather-icons": "^4.21.0",
-    "milligram": "^1.3.0"
+    "feather-icons": "^4.21.0"
   },
   "husky": {
     "hooks": {

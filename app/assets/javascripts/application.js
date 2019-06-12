@@ -14,6 +14,4 @@
 //= require jquery
 //= require leaflet
 //= require activestorage
-//= require main_map
 //= require turbolinks
-//= require_tree .

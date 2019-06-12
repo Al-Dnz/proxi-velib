@@ -39,10 +39,11 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker'
-# gem 'milligram'
+
 gem 'jquery-rails'
-gem 'leaflet-js'
+# gem 'leaflet-js'
 gem 'leaflet-rails'
+gem 'milligram'
 # source 'https://rails-assets.org' do
 #   gem 'rails-assets-leaflet'
 # end
