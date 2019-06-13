@@ -12,4 +12,17 @@ var map = L.map('main-map').setView([gon.thp_location.latitude, gon.thp_location
       shadowAnchor: [22, 94]
  });
 
- var thpMarker = L.marker([gon.thp_location.latitude, gon.thp_location.longitude], {icon: thpIcon}).addTo(map);
+ var thpMarker = L.marker([gon.thp_location.latitude, gon.thp_location.longitude], {icon: thpIcon})
+ var genericMarker =  L.circle([gon.thp_location.latitude, gon.thp_location.longitude] , {radius: 10 , opacity: 1 ,color: "red"} );
+
+
+ // var myIcon = L.divIcon({className: 'centerMarker'});
+ // L.marker([gon.thp_location.latitude, gon.thp_location.longitude], {icon: myIcon}).addTo(map);
+
+
+ if (thpIcon){
+  thpMarker.addTo(map);
+ }
+ else{
+  genericMarker.addTo(map);
+ }

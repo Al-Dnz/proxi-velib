@@ -54,7 +54,7 @@ function displayProxiStations(stationObject)
     td2.innerHTML = "";
     td3.innerHTML = stationObject.free_bikes;
     td4.innerHTML = stationObject.distance*1000 + " m";
-    tr.appendChild(td1,td2,td3,td4);
+    tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
@@ -70,11 +70,12 @@ function displayProxiStations(stationObject)
   function refreshMethod(){
     console.log("REFRESH !");
     var tableBody = document.getElementById('table-content');
-    tableBody.innerHTML = "";
+
     markers.clearLayers();
     fetch(apiURL)
       .then(response => response.json())
       .then(data => {
+        tableBody.innerHTML = "";
         newStations = [];
         data.network.stations.forEach(function(element) {
           if (proxiStations.some(e => e.id === element.id))
