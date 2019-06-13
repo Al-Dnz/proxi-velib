@@ -23,7 +23,7 @@
                 <th >Distance</th>
             </tr>
       </thead>
-        <tbody>
+        <tbody id="table-content" %>>
             <tr>
                 <td>Rasta Station</td>
                 <td>420 Rue Sativa</td>
@@ -44,7 +44,7 @@
 <br>
 
 <div class="container">
-  <button type="button" name="button-refresh" class="button-large">REFRESH</button>
+  <button type="button" name="button-refresh" class="button-large" onclick="refreshMethod();">REFRESH</button>
 </div>
 
 <br>
@@ -59,4 +59,5 @@
 </form>
 </div>
 
+<%= javascript_include_tag 'api_request' %>
 <%= javascript_include_tag 'main_map' %>
