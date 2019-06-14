@@ -29,6 +29,10 @@ Rails/Output:
 Rails/InverseOf:
   Enabled: false
 
+Style/GlobalVars:
+  Exclude:
+    - 'config/initializers/redis.rb'
+
 Style/DateTime:
   Enabled: true
 
