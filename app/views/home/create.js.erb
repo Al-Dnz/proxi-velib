@@ -20,25 +20,3 @@ function findPlace()
 }
 
 findPlace() ;
-
-// function getFullVelibDatas()
-// {
-//   fetch(apiURL)
-//     .then(response => response.json())
-//     .then(data => {
-//       proxiStations = [];
-//       data.network.stations.forEach(function(element)
-//       {
-//         element.distance = orthonromicDistance(element, coord);
-//         if (orthonromicDistance(element, location) < 0.6)
-//         {
-//           proxiStations.push(element)
-//         }
-//       });
-//
-//       proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
-//       console.log(data.network.stations.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5));
-//
-//     })
-//     .catch(error => console.error(error))
-// }
