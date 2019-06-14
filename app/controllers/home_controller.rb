@@ -3,6 +3,8 @@
 class HomeController < ApplicationController
   def index
     gon.thp_location = Location.first
+    # SayHelloJob.perform_later
+    # SayHelloJob.set(wait: 10.seconds).perform_later
   end
 
   def create

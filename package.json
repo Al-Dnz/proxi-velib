@@ -2,7 +2,8 @@
   "name": "proxi-velib",
   "private": true,
   "dependencies": {
-    "feather-icons": "^4.21.0"
+    "feather-icons": "^4.21.0",
+    "redis": "^2.8.0"
   },
   "husky": {
     "hooks": {

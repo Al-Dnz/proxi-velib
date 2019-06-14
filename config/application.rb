@@ -19,5 +19,6 @@ module ProxiVelib
     # the framework and any gems in your application.
     config.serve_static_assets = true
     config.assets.initialize_on_precompile = false
+    config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
   end
 end
