@@ -1,28 +1,43 @@
 console.log("hello from main_map.js");
-var map = L.map('main-map').setView([gon.thp_location.latitude, gon.thp_location.longitude], 16);
- L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png',{maxZoom :100}).addTo(map);
- var markers = L.layerGroup();
+var map;
+var centerPoint = [gon.thp_location.latitude, gon.thp_location.longitude]
+var thpMarker ;
+var genericMarker ;
+var markers;
 
- thpIcon = L.icon({
-      iconUrl: '/assets/THP_logo.png',
+function createMap(coordinates , boolean){
+
+  //map.remove();
+  map = L.map('main-map').setView(coordinates, 16);
+  L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png',{maxZoom :100}).addTo(map);
+  markers = L.layerGroup();
+
+  thpIcon = L.icon({
+      iconUrl: 'https://i2.wp.com/laboate.com/next3/wp-content/uploads/2018/05/hacking-project.png?fit=240%2C239',
       iconSize: [35, 35],
       iconAnchor: [22, 38],
       popupAnchor: [-3, -76],
       shadowSize: [68, 95],
       shadowAnchor: [22, 94]
- });
+      });
 
- var thpMarker = L.marker([gon.thp_location.latitude, gon.thp_location.longitude], {icon: thpIcon})
- var genericMarker =  L.circle([gon.thp_location.latitude, gon.thp_location.longitude] , {radius: 10 , opacity: 1 ,color: "red"} );
+  if (boolean == true)
+  {thpMarker = L.marker(coordinates, {icon: thpIcon})}
+  else
+  {genericMarker =  L.circle(coordinates , {radius: 10 , opacity: 1 ,color: "red"} );}
+
+}
 
 
- // var myIcon = L.divIcon({className: 'centerMarker'});
- // L.marker([gon.thp_location.latitude, gon.thp_location.longitude], {icon: myIcon}).addTo(map);
+function setMainMarker(){
 
+  if (thpMarker){
+   thpMarker.addTo(map);
+  }
+  else{
+   genericMarker.addTo(map);
+  }
+}
 
- if (thpIcon){
-  thpMarker.addTo(map);
- }
- else{
-  genericMarker.addTo(map);
- }
+createMap(centerPoint, true);
+setMainMarker();
