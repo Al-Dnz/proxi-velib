@@ -52,16 +52,13 @@ function displayProxiStations(stationObject)
   {
     var tableBody = document.getElementById('table-content');
     var td1 = document.createElement("TD");
-    
     var td3 = document.createElement("TD");
     var td4 = document.createElement("TD");
     var tr = document.createElement("TR");
     td1.innerHTML = stationObject.name;
-    
     td3.innerHTML = stationObject.free_bikes;
     td4.innerHTML = stationObject.distance*1000 + " m";
     tr.appendChild(td1);
-    
     tr.appendChild(td3);
     tr.appendChild(td4);
     tableBody.appendChild(tr);
