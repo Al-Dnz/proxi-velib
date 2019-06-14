@@ -42,7 +42,9 @@ gem 'faker'
 
 gem 'jquery-rails'
 # gem 'leaflet-js'
+gem 'geocoder'
 gem 'gon'
+gem 'hashie'
 gem 'leaflet-rails'
 gem 'milligram'
 # source 'https://rails-assets.org' do

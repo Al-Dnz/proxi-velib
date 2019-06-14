@@ -1,25 +1,31 @@
 console.log("Hello from api_request.js");
 
 const apiURL = "http://api.citybik.es/v2/networks/velib";
-var proxiStations = [];
+init(gon.thp_location);
 
-fetch(apiURL)
-  .then(response => response.json())
-  .then(data => {
-    data.network.stations.forEach(function(element) {
-      element.distance = orthonromicDistance(element, gon.thp_location);
+var proxiStations ;
 
-      if (orthonromicDistance(element, gon.thp_location) < 0.6)
+function init(location) {
+  proxiStations = [];
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+
+      data.network.stations.forEach(function(element)
       {
-        //displayProxiStations(element);
-        proxiStations.push(element)
-      }
+        element.distance = orthonromicDistance(element, location);
+        if (orthonromicDistance(element, location) < 0.6)
+        {
+          proxiStations.push(element)
+        }
+      });
 
-    });
-    proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
-    console.log(data.network.stations.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
-  })
-  .catch(error => console.error(error))
+      proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
+      //console.log(data.network.stations.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
+    })
+    .catch(error => console.error(error))
+
+}
 
 function orthonromicDistance(station, location) {
   const r = 6378.14;
@@ -46,16 +52,16 @@ function displayProxiStations(stationObject)
   {
     var tableBody = document.getElementById('table-content');
     var td1 = document.createElement("TD");
-    var td2 = document.createElement("TD");
+    
     var td3 = document.createElement("TD");
     var td4 = document.createElement("TD");
     var tr = document.createElement("TR");
     td1.innerHTML = stationObject.name;
-    td2.innerHTML = "";
+    
     td3.innerHTML = stationObject.free_bikes;
     td4.innerHTML = stationObject.distance*1000 + " m";
     tr.appendChild(td1);
-    tr.appendChild(td2);
+    
     tr.appendChild(td3);
     tr.appendChild(td4);
     tableBody.appendChild(tr);
@@ -66,29 +72,32 @@ function displayProxiStations(stationObject)
     map.addLayer(markers);
   }
 
+function refreshMethod(){
+  console.log("REFRESH !");
+  var tableBody = document.getElementById('table-content');
 
-  function refreshMethod(){
-    console.log("REFRESH !");
-    var tableBody = document.getElementById('table-content');
+  markers.clearLayers();
+  map.off();
+  map.remove();
+  createMap(centerPoint, thpMarker);
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      tableBody.innerHTML = "";
+      newStations = [];
+      data.network.stations.forEach(function(element) {
+        if (proxiStations.some(e => e.id === element.id))
+        {
+          var newStation = proxiStations.find(function(e) {return e.id === element.id;});
+          //console.log("nouvelle stations :"+ newStation.name);
+          newStation.free_bikes = element.free_bikes;
+          newStations.push(newStation);
+        }
+      });
 
-    markers.clearLayers();
-    fetch(apiURL)
-      .then(response => response.json())
-      .then(data => {
-        tableBody.innerHTML = "";
-        newStations = [];
-        data.network.stations.forEach(function(element) {
-          if (proxiStations.some(e => e.id === element.id))
-          {
-            var newStation = proxiStations.find(function(e) {return e.id === element.id;});
-            //console.log("nouvelle stations :"+ newStation.name);
-            newStation.free_bikes = element.free_bikes;
-            newStations.push(newStation);
-          }
-        });
-
-        newStations.sort(function(a, b) {return a.distance - b.distance});
-        newStations.filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)})
-      })
-      .catch(error => console.error(error))
-  }
+      newStations.sort(function(a, b) {return a.distance - b.distance});
+      newStations.filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)})
+      setMainMarker(thpMarker);
+    })
+    .catch(error => console.error(error))
+}
