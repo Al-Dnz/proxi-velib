@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
 uri = ENV["REDISTOGO_URL"] || "redis://localhost:6379/"
-$redis = Redis.new(url: uri)
+$redis = Redis.new(url: uri, port: uri.port, password: uri.password)
