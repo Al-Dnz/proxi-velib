@@ -49,6 +49,7 @@ gem 'leaflet-rails'
 gem 'milligram'
 gem 'sidekiq'
 # gem 'sidekiq-scheduler'
+gem 'dotenv'
 gem 'sidekiq-cron'
 
 group :development, :test do
