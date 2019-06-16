@@ -14,7 +14,8 @@ require 'faker'
 
 require 'httparty'
 
-response = HTTParty.get('http://api.citybik.es/v2/networks/velib', headers: { 'Content-Type' => 'application/json' })
+response = HTTParty.get('http://api.citybik.es/v2/networks/velib')
+# , :query => query ,headers: { 'Content-Type' => 'application/json' }
 json = JSON.parse(response.body)
 velibs = json["network"]
 stations = velibs["stations"]
