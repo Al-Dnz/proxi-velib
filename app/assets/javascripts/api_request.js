@@ -1,22 +1,23 @@
 console.log("Hello from api_request.js");
 
 const apiURL = "http://api.citybik.es/v2/networks/velib";
-var stations = gon.stations;
-stations.forEach(function(element)
-{
-  element.latitude = parseFloat(element.latitude);
-  element.longitude = parseFloat(element.longitude);
-})
+var stations = gon.stations ;
+parseFloatCoord();
+
 // console.log("STATIONS HERE -->");
 // console.log(stations);
 var proxiStations ;
 init(gon.thp_location, stations);
 
+
 function getStations(gon_stations)
 {
-  stations = gon_stations
+  stations = gon_stations;
+  parseFloatCoord()
+  console.log("GET STATIONS->");
+  console.log(stations);
 }
-// gon.watch( "gon_stations" , {interval: 1000}, getStations );
+
 
 function init(location,datas) {
   proxiStations = [];
@@ -80,8 +81,9 @@ function displayProxiStations(stationObject)
 
 function refreshMethod(){
   console.log("REFRESH !");
-  gon.stations.clear;
-  stations = gon.stations;
+  gon.watch( "gon_stations" , getStations );
+  //gon.clear;
+  // stations = gon.stations;
   var tableBody = document.getElementById('table-content');
 
   markers.clearLayers();
@@ -104,5 +106,16 @@ function refreshMethod(){
   newStations.sort(function(a, b) {return a.distance - b.distance});
   newStations.filter(station =>station.vacant_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)})
   setMainMarker(thpMarker);
+  //gon.unwatch( "gon_stations" , getStations );
+
+}
+
+function parseFloatCoord()
+{
+  stations.forEach(function(element)
+  {
+    element.latitude = parseFloat(element.latitude);
+    element.longitude = parseFloat(element.longitude);
+  })
 
 }
