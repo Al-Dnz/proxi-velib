@@ -26,6 +26,8 @@
 
           </tbody>
       </table>
+      <button type="button" name="button-refresh" class="button-large" onclick="refreshMethod();">REFRESH</button>
+
     </div>
 
     <div class="column">
@@ -39,20 +41,16 @@
 
 
 <div class="container">
-  <button type="button" name="button-refresh" class="button-large" onclick="refreshMethod();">REFRESH</button>
-</div>
-
-<div class="container">
 
     <%= form_tag url_for(action: 'create'), multipart: true,id: "main-form" ,class: "search_form" ,method: "post",  :remote => true do %>
 
       <div >
         <%= label_tag "ADRESSE", nil, class:"label" %>
-        <%= text_field_tag 'place', @place, class: "form-control ", placeholder: 'OÙ SOUHAITEZ VOUS TROUVER DES VÉLIBS ?' %>
+        <%= text_field_tag 'place', @place, class: "form-control ", placeholder: 'OÙ SOUHAITEZ VOUS TROUVER DES VÉLIBS SUR PARIS?' %>
       </div>
 
       <div class="submit-button">
-        <%= submit_tag "Envoyer", id: "submit_btn" ,class: 'inner-btn'   %>
+        <%= submit_tag "FIND", id: "submit_btn" ,class: 'inner-btn'   %>
       </div>
 
     <%end%>
