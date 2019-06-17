@@ -20,5 +20,8 @@ module ProxiVelib
     config.serve_static_assets = true
     config.assets.initialize_on_precompile = false
     config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
+
+    config.time_zone = 'Europe/Paris'
+    config.active_record.default_timezone = :local
   end
 end
