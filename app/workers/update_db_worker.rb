@@ -16,14 +16,17 @@ class UpdateDbWorker
     puts "BEGINS AT : #{Time.zone.now}".blue.blink
     stations.each do |e|
       station = Station.find_by(identification: e['id'])
-
-      # next unless station.vacant_bikes != e['free_bikes']
-      updating_date = station.updated_at
-      station.update( vacant_bikes: e['free_bikes'] )
-      if updating_date != station.updated_at
-        number_updated_stations += 1
-        puts "station updated -->  id: #{station.identification} "
+      if !Station.exists?(identification: e['id'])
+        Station.create(identification: e['id'], name: e["name"], latitude: e["latitude"], longitude: e["longitude"], vacant_bikes: e["free_bikes"])
       end
+
+      next unless station.vacant_bikes != e['free_bikes']
+      # updating_date = station.updated_at
+      station.update( vacant_bikes: e['free_bikes'] )
+      # if updating_date != station.updated_at
+      number_updated_stations += 1
+      puts "station updated -->  id: #{station.identification} "
+      #end
     end
     puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".blue.blink
     puts "FINISHED AT :#{Time.zone.now}".blue.blink
