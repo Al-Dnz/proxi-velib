@@ -2,6 +2,11 @@ console.log("Hello from api_request.js");
 
 const apiURL = "http://api.citybik.es/v2/networks/velib";
 var stations = gon.stations;
+stations.forEach(function(element)
+{
+  element.latitude = parseFloat(element.latitude);
+  element.longitude = parseFloat(element.longitude);
+})
 // console.log("STATIONS HERE -->");
 // console.log(stations);
 var proxiStations ;
@@ -11,11 +16,7 @@ function getStations(gon_stations)
 {
   stations = gon_stations
 }
-
-
 // gon.watch( "gon_stations" , {interval: 1000}, getStations );
-
-
 
 function init(location,datas) {
   proxiStations = [];
@@ -29,9 +30,9 @@ function init(location,datas) {
         }
       });
 
-      proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
-      console.log("array from init function -->");
-      console.log(datas.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
+      proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.vacant_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
+      // console.log("array from init function -->");
+      // console.log(datas.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
 
 }
 
@@ -64,7 +65,7 @@ function displayProxiStations(stationObject)
     var td4 = document.createElement("TD");
     var tr = document.createElement("TR");
     td1.innerHTML = stationObject.name;
-    td3.innerHTML = stationObject.free_bikes;
+    td3.innerHTML = stationObject.vacant_bikes;
     td4.innerHTML = stationObject.distance*1000 + " m";
     tr.appendChild(td1);
     tr.appendChild(td3);
@@ -79,30 +80,29 @@ function displayProxiStations(stationObject)
 
 function refreshMethod(){
   console.log("REFRESH !");
+  gon.stations.clear;
+  stations = gon.stations;
   var tableBody = document.getElementById('table-content');
 
   markers.clearLayers();
   map.off();
   map.remove();
   createMap(centerPoint, thpMarker);
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      tableBody.innerHTML = "";
-      newStations = [];
-      data.network.stations.forEach(function(element) {
-        if (proxiStations.some(e => e.id === element.id))
-        {
-          var newStation = proxiStations.find(function(e) {return e.id === element.id;});
-          //console.log("nouvelle stations :"+ newStation.name);
-          newStation.free_bikes = element.free_bikes;
-          newStations.push(newStation);
-        }
-      });
+  tableBody.innerHTML = "";
+  newStations = [];
 
-      newStations.sort(function(a, b) {return a.distance - b.distance});
-      newStations.filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)})
-      setMainMarker(thpMarker);
-    })
-    .catch(error => console.error(error))
+  stations.forEach(function(element) {
+    if (proxiStations.some(e => e.id === element.id))
+    {
+      var newStation = proxiStations.find(function(e) {return e.id === element.id;});
+      //console.log("nouvelle stations :"+ newStation.name);
+      newStation.vacant_bikes = element.vacant_bikes;
+      newStations.push(newStation);
+    }
+  });
+
+  newStations.sort(function(a, b) {return a.distance - b.distance});
+  newStations.filter(station =>station.vacant_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)})
+  setMainMarker(thpMarker);
+
 }

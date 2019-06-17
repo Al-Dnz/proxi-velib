@@ -2,6 +2,13 @@
 
  var placefound = {latitude: <%= @placefound.latitude %> , longitude: <%= @placefound.longitude %>  };
  var placefound_name = "<%= @placefound_name %>" ;
+ //gon.stations.clear;
+ // stations = gon.stations;
+ // stations.forEach(function(element)
+ // {
+ //   element.latitude = parseFloat(element.latitude);
+ //   element.longitude = parseFloat(element.longitude);
+ // })
 
 function findPlace()
 {
@@ -9,13 +16,14 @@ function findPlace()
   document.getElementById('table-title').innerHTML= "STATIONS À PROXIMITÉ DE "+ placefound_name;
   document.getElementById('table-content').innerHTML= "";
   centerPoint = coord;
-  init(placefound);
+  init(placefound, stations);
   map.off();
   map.remove();
 
   thpMarker = false ;
   createMap(coord, thpMarker);
   setMainMarker();
+  refreshMethod();
 
 }
 
