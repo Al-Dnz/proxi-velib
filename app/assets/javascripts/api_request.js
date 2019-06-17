@@ -1,29 +1,37 @@
 console.log("Hello from api_request.js");
 
 const apiURL = "http://api.citybik.es/v2/networks/velib";
-init(gon.thp_location);
-
+var stations = gon.stations;
+// console.log("STATIONS HERE -->");
+// console.log(stations);
 var proxiStations ;
+init(gon.thp_location, stations);
 
-function init(location) {
+function getStations(gon_stations)
+{
+  stations = gon_stations
+}
+
+
+// gon.watch( "gon_stations" , {interval: 1000}, getStations );
+
+
+
+function init(location,datas) {
   proxiStations = [];
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
 
-      data.network.stations.forEach(function(element)
+      datas.forEach(function(element)
       {
         element.distance = orthonromicDistance(element, location);
-        if (orthonromicDistance(element, location) < 0.6)
+        if (orthonromicDistance(element, location) < 1)
         {
           proxiStations.push(element)
         }
       });
 
       proxiStations.sort(function(a, b) {return a.distance - b.distance}).filter(station =>station.free_bikes > 0).slice(0, 5).forEach(function(station) {displayProxiStations(station)});
-      //console.log(data.network.stations.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
-    })
-    .catch(error => console.error(error))
+      console.log("array from init function -->");
+      console.log(datas.sort(function(a, b) {return a.distance - b.distance}).slice(0, 5))
 
 }
 

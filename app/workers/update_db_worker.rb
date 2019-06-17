@@ -12,7 +12,8 @@ class UpdateDbWorker
 
     number_updated_stations = 0
     puts "-------------------------------------------------"
-    puts "UPDATING DATA ... "
+    puts "UPDATING DATA ... ".blue.blink
+    puts "BEGINS AT : #{Time.zone.now}".blue.blink
     stations.each do |e|
       station = Station.find_by(identification: e['id'])
 
@@ -24,7 +25,7 @@ class UpdateDbWorker
         puts "station updated -->  id: #{station.identification} "
       end
     end
-    puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}"
-    puts "FINISHED AT :#{Time.zone.now}"
+    puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".blue.blink
+    puts "FINISHED AT :#{Time.zone.now}".blue.blink
   end
 end
