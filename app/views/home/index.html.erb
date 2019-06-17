@@ -26,13 +26,15 @@
 
           </tbody>
       </table>
-      <button type="button" name="button-refresh" class="button-large" onclick="refreshMethod();">REFRESH</button>
+      
+      <%= button_tag "REFRESH" ,name: "button-refresh",  type: "button", class: "button-large" , onclick: "refreshMethod()" %>
 
     </div>
 
     <div class="column">
       <div  class="map "id= "main-map" ></div>
     </div>
+
 
   </div>
 

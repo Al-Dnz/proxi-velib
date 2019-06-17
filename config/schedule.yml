@@ -1,7 +1,9 @@
-my_first_job:
+update_stations_job:
   cron: "*/30 * * * * *"
   class: "UpdateDbWorker"
+  queue: default
 
-my_second_job:
-  cron: "0 */12 * * *"
+create_new_stations_job:
+  cron: "0 0 */12 * * *"
   class: "FindNewStationsWorker"
+  queue: default
