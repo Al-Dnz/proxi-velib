@@ -11,9 +11,9 @@ class UpdateDbWorker
     stations = velibs["stations"]
 
     number_updated_stations = 0
-    puts "-------------------------------------------------"
-    puts "UPDATING DATA ... ".blue.blink
-    puts "BEGINS AT : #{Time.zone.now}".blue.blink
+    puts "-------------------------------------------------".light_blue
+    puts "UPDATING DATA ... ".light_blue
+    puts "BEGINS AT : #{Time.zone.now}".light_blue
     stations.each do |e|
       station = Station.find_by(identification: e['id'])
 
@@ -26,7 +26,7 @@ class UpdateDbWorker
       puts "station updated -->  id: #{station.identification} "
       # end
     end
-    puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".blue.blink
-    puts "FINISHED AT :#{Time.zone.now}".blue.blink
+    puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".light_blue
+    puts "FINISHED AT :#{Time.zone.now}".light_blue
   end
 end
