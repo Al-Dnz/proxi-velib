@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   def index
     gon.thp_location = Location.first
     gon.stations = Station.all
+    gon.watch.gon_stations = Station.all
   end
 
   def create

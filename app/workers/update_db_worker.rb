@@ -21,12 +21,13 @@ class UpdateDbWorker
       end
 
       next unless station.vacant_bikes != e['free_bikes']
+
       # updating_date = station.updated_at
       station.update( vacant_bikes: e['free_bikes'] )
       # if updating_date != station.updated_at
       number_updated_stations += 1
       puts "station updated -->  id: #{station.identification} "
-      #end
+      # end
     end
     puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".blue.blink
     puts "FINISHED AT :#{Time.zone.now}".blue.blink
