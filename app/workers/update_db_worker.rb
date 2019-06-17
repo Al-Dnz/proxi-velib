@@ -16,9 +16,6 @@ class UpdateDbWorker
     puts "BEGINS AT : #{Time.zone.now}".blue.blink
     stations.each do |e|
       station = Station.find_by(identification: e['id'])
-      if !Station.exists?(identification: e['id'])
-        Station.create(identification: e['id'], name: e["name"], latitude: e["latitude"], longitude: e["longitude"], vacant_bikes: e["free_bikes"])
-      end
 
       next unless station.vacant_bikes != e['free_bikes']
 
