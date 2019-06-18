@@ -1,9 +1,7 @@
 update_stations_job:
   cron: "*/30 * * * * *"
   class: "UpdateDbWorker"
-  queue: default
 
 create_new_stations_job:
-  cron: "0 0 */12 * * *"
+  cron: "0 */30 * * * *"
   class: "FindNewStationsWorker"
-  queue: default

@@ -16,7 +16,7 @@ class UpdateDbWorker
     puts "BEGINS AT : #{Time.zone.now}".light_blue
     stations.each do |e|
       station = Station.find_by(identification: e['id'])
-
+      next if station.nil?
       next unless station.vacant_bikes != e['free_bikes']
 
       # updating_date = station.updated_at
@@ -24,7 +24,6 @@ class UpdateDbWorker
       # if updating_date != station.updated_at
       number_updated_stations += 1
       puts "station updated -->  id: #{station.identification} "
-      # end
     end
     puts "NOMBRE DE STATIONS MISES À JOUR : #{number_updated_stations} / #{Station.all.count}".light_blue
     puts "FINISHED AT :#{Time.zone.now}".light_blue

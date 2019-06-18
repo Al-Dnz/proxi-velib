@@ -53,6 +53,7 @@ gem 'colorize'
 gem 'dotenv'
 gem 'httparty'
 gem 'sidekiq-cron'
+gem 'table_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -69,7 +70,6 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'table_print'
   gem 'web-console', '>= 3.3.0'
 end
 
