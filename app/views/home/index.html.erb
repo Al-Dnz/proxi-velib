@@ -10,53 +10,42 @@
 <br>
 
 <div class="table-container container">
-    <div class="row">
+  <div class="row">
 
-      <div class="column">
-        <table>
-          <thead>
-            <div id="table-title">STATIONS À PROXIMITÉ DES LOCAUX DE THP</div>
-                <tr>
-                    <th >Nom</th>
-                    <th >Nombre de vélos</th>
-                    <th >Distance</th>
-                </tr>
-          </thead>
-          <tbody id="table-content" >
-
-          </tbody>
+    <div class="column">
+      <table>
+        <thead>
+          <div id="table-title">STATIONS À PROXIMITÉ DES LOCAUX DE THP</div>
+              <tr>
+                  <th >Nom</th>
+                  <th >Nombre de vélos</th>
+                  <th >Distance</th>
+              </tr>
+        </thead>
+        <tbody id="table-content" >
+        </tbody>
       </table>
-      
       <%= button_tag "REFRESH" ,name: "button-refresh",  type: "button", class: "button-large" , onclick: "refreshMethod()" %>
-
     </div>
 
     <div class="column">
       <div  class="map "id= "main-map" ></div>
     </div>
 
-
   </div>
-
 </div>
 
-
-
 <div class="container">
+  <%= form_tag url_for(action: 'create'), multipart: true,id: "main-form" ,class: "search_form" ,method: "post",  :remote => true do %>
+    <div >
+      <%= label_tag "ADRESSE", nil, class:"label" %>
+      <%= text_field_tag 'place', @place, class: "form-control ", placeholder: 'OÙ SOUHAITEZ VOUS TROUVER DES VÉLIBS SUR PARIS?' %>
+    </div>
 
-    <%= form_tag url_for(action: 'create'), multipart: true,id: "main-form" ,class: "search_form" ,method: "post",  :remote => true do %>
-
-      <div >
-        <%= label_tag "ADRESSE", nil, class:"label" %>
-        <%= text_field_tag 'place', @place, class: "form-control ", placeholder: 'OÙ SOUHAITEZ VOUS TROUVER DES VÉLIBS SUR PARIS?' %>
-      </div>
-
-      <div class="submit-button">
-        <%= submit_tag "FIND", id: "submit_btn" ,class: 'inner-btn'   %>
-      </div>
-
-    <%end%>
-
+    <div class="submit-button">
+      <%= submit_tag "FIND", id: "submit_btn" ,class: 'inner-btn'   %>
+    </div>
+  <%end%>
 </div>
 
 Données fournies par <a href="https://citybik.es">CITYBIK.ES</a>

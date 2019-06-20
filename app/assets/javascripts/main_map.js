@@ -1,13 +1,12 @@
-console.log("hello from main_map.js");
+//console.log("hello from main_map.js");
 var map;
 var centerPoint = [gon.thp_location.latitude, gon.thp_location.longitude]
 var thpMarker ;
 var genericMarker ;
 var markers;
 
-function createMap(coordinates , boolean){
-
-  //map.remove();
+function createMap(coordinates , boolean)
+{
   map = L.map('main-map').setView(coordinates, 16);
   L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png',{maxZoom :100}).addTo(map);
   markers = L.layerGroup();
@@ -25,12 +24,10 @@ function createMap(coordinates , boolean){
   {thpMarker = L.marker(coordinates, {icon: thpIcon})}
   else
   {genericMarker =  L.circle(coordinates , {radius: 10 , opacity: 1 ,color: "red"} );}
-
 }
 
-
-function setMainMarker(){
-
+function setMainMarker()
+{
   if (thpMarker){
    thpMarker.addTo(map);
   }
