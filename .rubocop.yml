@@ -55,3 +55,7 @@ Style/ClassAndModuleChildren:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/controllers/home_controller_spec.rb'
+
+RSpec/ContextWording:
+  Exclude:
+    - 'spec/support/shared_contexts/gon.rb'
