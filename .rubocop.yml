@@ -51,3 +51,7 @@ Metrics/BlockLength:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/controllers/home_controller_spec.rb'
