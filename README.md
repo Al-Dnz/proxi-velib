@@ -9,13 +9,15 @@ Proxivelib use Geocoder , be accurate in your research if you want find the righ
 The app is configured to find stations only in Paris, and soon for the other French metropolis.
 
 Datas are updated every 30 seconds with scheduled background-jobs API requests.
+
+
 Velib datas are given by http://api.citybik.es/v2/
 
 * Ruby 2.6.2
 * Rails 5.2.3
 
 * To run tests , launch in your term
-  '$ rspec'
+  `$ rspec`
 
 * To run scheduled background-jobs launch
-  '$ sidekiq'
+  `$ sidekiq`
