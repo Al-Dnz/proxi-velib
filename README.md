@@ -15,6 +15,8 @@ Datas are updated every 30 seconds with scheduled background-jobs API requests.
 
 Velib datas are given by http://api.citybik.es/v2/
 
+* Repo : https://github.com/Picasso6/proxi-velib
+
 * Ruby 2.6.2
 * Rails 5.2.3
 
