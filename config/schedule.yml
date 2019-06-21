@@ -2,6 +2,6 @@ update_stations_job:
   cron: "*/30 * * * * *"
   class: "UpdateDbWorker"
 
-# create_new_stations_job:
-#   cron: "0 */30 * * * *"
-#   class: "FindNewStationsWorker"
+create_new_stations_job:
+  cron: "0 */30 * * * *"
+  class: "FindNewStationsWorker"
