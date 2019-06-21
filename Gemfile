@@ -80,7 +80,7 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'factory_bot_rails'
-  gem 'rspec-sidekiq'
+  # gem 'rspec-sidekiq'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
