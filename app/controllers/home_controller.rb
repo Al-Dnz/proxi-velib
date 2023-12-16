@@ -8,6 +8,9 @@ class HomeController < ApplicationController
   end
 
   def create
+
+  
+    params[:place] += ", Paris"
     cookies[:place_to_find] = params[:place]
     results = Geocoder.search(cookies[:place_to_find])
 
