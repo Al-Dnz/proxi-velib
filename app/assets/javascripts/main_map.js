@@ -4,6 +4,38 @@ var centerPoint = [gon.thp_location.latitude, gon.thp_location.longitude]
 var thpMarker ;
 var genericMarker ;
 var markers;
+var currentLayer;
+
+
+function changeMapLayer() {
+  var value = document.getElementById("layerSelect").value;
+  var index  = parseInt(value);
+  map.removeLayer(currentLayer);
+  var newLayer =  L.tileLayer(map_layer_arr[index],{maxZoom :100})
+  newLayer.addTo(map);
+}
+
+function createLayerSelectField()
+{
+var array = map_layer_arr;
+var div = document.getElementById("selectLayerField")
+var selectList = document.createElement("select");
+selectList.id = "layerSelect";
+
+for (var i = 0; i < array.length; i++) {
+  var option = document.createElement("option");
+  option.value = i;
+  option.text = array[i];
+  selectList.appendChild(option);
+}
+
+selectList.setAttribute( "onchange", "changeMapLayer()");
+var labelForSelectList = document.createElement("label");
+labelForSelectList.setAttribute( "for", "layerSelect");
+labelForSelectList.innerHTML = "Map Layer"
+div.appendChild(labelForSelectList);
+div.appendChild(selectList);
+}
 
 
 const map_layer_arr = [
@@ -16,8 +48,8 @@ const map_layer_arr = [
 function createMap(coordinates , boolean)
 {
   map = L.map('main-map').setView(coordinates, 16);
-  layer = L.tileLayer(map_layer_arr[0],{maxZoom :100})
-  layer.addTo(map);
+  currentLayer = L.tileLayer(map_layer_arr[0],{maxZoom :100})
+  currentLayer.addTo(map);
   markers = L.layerGroup();
 
   thpIcon = L.icon({
@@ -47,3 +79,4 @@ function setMainMarker()
 
 createMap(centerPoint, true);
 setMainMarker();
+createLayerSelectField();
