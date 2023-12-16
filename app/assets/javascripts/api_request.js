@@ -74,7 +74,6 @@ function displayProxiStations(stationObject)
   }
 
 function refreshMethod(){
-  console.log("REFRESH !");
   gon.watch( "gon_stations" , getStations );
   getStations(stations);
   var tableBody = document.getElementById('table-content');
